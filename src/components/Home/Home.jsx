@@ -1,9 +1,13 @@
-import React from 'react';
+
+import { useLocation } from 'react-router-dom';
+import HomeBanner from '../Banner/HomeBanner';
+import OtherBanner from '../Banner/OtherBanner';
 
 const Home = () => {
+   
     return (
         <div>
-            Home
+            
         </div>
     );
 };
