@@ -1,9 +1,32 @@
+import { useLoaderData, useParams } from "react-router-dom";
+import GadgetCards from "./GadgetCards";
+import { useEffect, useState } from "react";
 
 
 const Gadgets = () => {
-    return (
-        <div>
+    const gadgets = useLoaderData();
+    const {category} = useParams();
+    const [gadgetsByCategory, setGadgetsByCategory] = useState([]);
+
+    useEffect(()=>{
+        if(category){
+            const filteredByCategory = [...gadgets].filter(
+                gadget => gadget.category === category
+            )
             
+            setGadgetsByCategory(filteredByCategory);
+        }else{
+            setGadgetsByCategory(gadgets)
+        }
+    },[category, gadgets]);
+    return (
+        <div className="border-2 grid grid-cols-3">
+            {
+                gadgetsByCategory.map(gadget => <GadgetCards
+                    key={gadget.product_id}
+                    gadget={gadget}
+                ></GadgetCards>)
+            }
         </div>
     );
 };
