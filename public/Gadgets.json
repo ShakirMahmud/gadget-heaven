@@ -1,0 +1,141 @@
+[
+    {
+      "product_id": 1,
+      "product_title": "iPhone 14 Pro",
+      "product_image": "https://i.ibb.co.com/sFgkZtM/i-Phone-14-Pro.png",
+      "category": "Smartphones",
+      "price": 999,
+      "description": "The latest iPhone with A16 Bionic chip and stunning camera capabilities.",
+      "specification": [
+        "6.1-inch display",
+        "128GB storage",
+        "Triple-camera system"
+      ],
+      "availability": true,
+      "rating": 4.8
+    },
+    {
+      "product_id": 2,
+      "product_title": "Samsung Galaxy S23",
+      "product_image": "https://i.ibb.co.com/P5FThNt/samsung-galaxy-s23-ultra-5g-1.jpg",
+      "category": "Smartphones",
+      "price": 799,
+      "description": "A powerful smartphone with an exceptional camera and battery life.",
+      "specification": [
+        "6.2-inch display",
+        "256GB storage",
+        "50MP camera"
+      ],
+      "availability": true,
+      "rating": 4.6
+    },
+    {
+      "product_id": 3,
+      "product_title": "MacBook Pro 16",
+      "product_image": "https://i.ibb.co.com/KxtZS1y/Mac-Book-Pro-16.jpg",
+      "category": "Laptops",
+      "price": 2399,
+      "description": "High-performance laptop ideal for professionals and creatives.",
+      "specification": [
+        "16-inch Retina display",
+        "32GB RAM",
+        "1TB SSD"
+      ],
+      "availability": true,
+      "rating": 4.9
+    },
+    {
+      "product_id": 4,
+      "product_title": "Dell XPS 13",
+      "product_image": "https://i.ibb.co.com/X7mGgr5/Dell-XPS-13.png",
+      "category": "Laptops",
+      "price": 1499,
+      "description": "Compact and powerful laptop with a stunning InfinityEdge display.",
+      "specification": [
+        "13.4-inch display",
+        "16GB RAM",
+        "512GB SSD"
+      ],
+      "availability": true,
+      "rating": 4.7
+    },
+    {
+      "product_id": 5,
+      "product_title": "Apple Watch Series 8",
+      "product_image": "https://i.ibb.co.com/Jx96rjf/Apple-Watch-Series-8.png",
+      "category": "Wearables",
+      "price": 399,
+      "description": "Smartwatch with health tracking and fitness features.",
+      "specification": [
+        "Always-On Retina display",
+        "Blood Oxygen app",
+        "GPS"
+      ],
+      "availability": true,
+      "rating": 4.5
+    },
+    {
+      "product_id": 6,
+      "product_title": "Oculus Quest 2",
+      "product_image": "https://i.ibb.co.com/Xj423TR/Oculus-Quest-2.png",
+      "category": "Gaming",
+      "price": 299,
+      "description": "All-in-one VR headset for gaming and entertainment.",
+      "specification": [
+        "128GB storage",
+        "High-resolution display",
+        "Built-in speakers"
+      ],
+      "availability": true,
+      "rating": 4.6
+    },
+    {
+      "product_id": 7,
+      "product_title": "Sony WH-1000XM4",
+      "product_image": "https://i.ibb.co.com/WswynBh/Sony-WH-1000-XM4.jpg",
+      "category": "Audio",
+      "price": 349,
+      "description": "Noise-cancelling headphones with incredible sound quality.",
+      "specification": [
+        "30 hours battery life",
+        "Adaptive Sound Control",
+        "Touch sensor controls"
+      ],
+      "availability": true,
+      "rating": 4.8
+    },
+    {
+      "product_id": 8,
+      "product_title": "JBL Charge 5",
+      "product_image": "https://i.ibb.co.com/c8f298x/JBL-CHARGE5-HERO-BLACK-0046-x1.png",
+      "category": "Audio",
+      "price": 179,
+      "description": "Portable Bluetooth speaker with powerful sound and waterproof design.",
+      "specification": [],
+      "availability": true,
+      "rating": 4.7
+    },
+    {
+      "product_id": 9,
+      "product_title": "GoPro HERO10",
+      "product_image": "https://i.ibb.co.com/z7nbK1s/Go-Pro-HERO10.jpg",
+      "category": "Cameras",
+      "price": 499,
+      "description": "Action camera with stunning 5.3K video and advanced stabilization.",
+      "specification": [],
+      "availability": true,
+      "rating": 4.9
+    },
+    {
+      "product_id": 10,
+      "product_title": "Razer DeathAdder V2",
+      "product_image": "https://i.ibb.co.com/PCW5Mcw/Razer-Death-Adder-V2.png",
+      "category": "Accessories",
+      "price": 69,
+      "description": "Ergonomic gaming mouse designed for comfort and speed.",
+      "specification": [],
+      "availability": true,
+      "rating": 4.6
+    }
+  ]
+ 

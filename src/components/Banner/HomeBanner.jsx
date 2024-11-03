@@ -2,7 +2,7 @@ import banner from '../../assets/banner.jpg';
 
 const HomeBanner = () => {
     return (
-        <div className='relative'>
+        <div className='relative '>
             <div className='bg-banner outline outline-2 outline-offset-8 outline-[#F6F6F6]  rounded-[32px] w-[96.25%] mx-auto absolute -top-24 left-1/2 transform -translate-x-1/2 z-0'>
                 <div className='text-center text-white w-[72.72%] mx-auto'>
                     <h1 className='font-bold lg:text-[56px] lg:mt-[128px]'>Upgrade Your Tech Accessorize with Gadget Heaven Accessories</h1>

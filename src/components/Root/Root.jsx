@@ -11,10 +11,10 @@ const Root = () => {
     const isHome = location.pathname === '/';
     console.log('Current Path:', location.pathname); 
     return (
-        <div>
+        <div className='flex flex-col'>
             {isHome ? <HomeNavBar></HomeNavBar> : <OtherNavBar></OtherNavBar>}
             {isHome ? <HomeBanner></HomeBanner> : <OtherBanner></OtherBanner>}
-            <div><Outlet></Outlet></div>
+            <div className='flex-grow'><Outlet></Outlet></div>
             <Footer></Footer>
         </div>
     );
