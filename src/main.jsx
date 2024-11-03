@@ -10,6 +10,7 @@ import Root from './components/Root/Root.jsx';
 import Home from './components/Home/Home.jsx';
 import Statistics from './components/Statistics/Statistics.jsx';
 import Dashboard from './components/Dashboard/Dashboard.jsx';
+import Gadgets from './components/Gadgets/Gadgets.jsx';
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,15 @@ const router = createBrowserRouter([
     children:[
       {
         path:'/',
-        element:<Home></Home>
+        element:<Home></Home>,
+        loader: ()=> fetch('../GadgetCategories.json'),
+        children:[
+          {
+            path: '/category/:category_name',
+            element: <Gadgets></Gadgets>,
+            loader: ()=> fetch('../Gadgets.json'),
+          }
+        ]
       },
       {
         path: '/statistics',
