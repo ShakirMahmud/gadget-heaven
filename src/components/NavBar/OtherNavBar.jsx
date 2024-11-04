@@ -5,7 +5,8 @@ import { HiOutlineShoppingCart } from "react-icons/hi";
 
 const OtherNavBar = () => {
     return (
-        <div className="navbar bg-base-100 w-4/5 mx-auto  md:py-6">
+        <div>
+            <div className="navbar  lg:w-4/5 mx-auto  py-6">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -24,7 +25,7 @@ const OtherNavBar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow font-medium text-base text-[#0B0B0BB3]">
 
                         <NavLink to='/'>Home</NavLink>
                         <NavLink to='/statistics'>Statistics</NavLink>
@@ -35,7 +36,7 @@ const OtherNavBar = () => {
                 <a className="btn btn-ghost text-xl">daisyUI</a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1 gap-12">
+                <ul className="menu menu-horizontal px-1 gap-12 font-medium text-base text-[#0B0B0BB3]">
                     <NavLink to='/'>Home</NavLink>
                     <NavLink to='/statistics'>Statistics</NavLink>
                     <NavLink to='/dashboard'>Dashboard</NavLink>
@@ -48,6 +49,11 @@ const OtherNavBar = () => {
                 <button className="border p-3 rounded-full">
                     <AiOutlineHeart />
                 </button>
+            </div>
+        </div>
+        <div className='h-[463px] bg-banner border-2 text-center text-white'>
+                <h2>Product Details</h2>
+                <p>Explore the latest gadgets that will take your experience to the next level. From smart devices to the coolest accessories, we have it all!</p>
             </div>
         </div>
     );
