@@ -10,7 +10,6 @@ const Root = () => {
     const location = useLocation();
     const isHome = location.pathname === '/';
     const isDashboard = location.pathname.startsWith('/dashboard');
-    console.log(isDashboard)
     const isCategory = Array.isArray(categories) && categories.some(category => location.pathname === `/category/${category.category_name}`);
     const showHomeNavAndBanner = isHome || isCategory;
     return (

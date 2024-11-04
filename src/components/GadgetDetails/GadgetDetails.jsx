@@ -1,39 +1,67 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { AiOutlineHeart } from "react-icons/ai";
+import { addToStoredCartList, addToStoredWishList, getAddToWishList } from '../../utilities/addToDB';
 
 const GadgetDetails = () => {
     const { product_id } = useParams();
-    console.log(product_id)
     const allGadgets = useLoaderData();
-    console.log(allGadgets)
     const clickedGadgets = allGadgets.filter(gadget => gadget.product_id == product_id);
-    console.log(clickedGadgets)
     const [{ product_image, product_title, price, description, specification, rating, availability }] = clickedGadgets;
+
+    const [isWishListed, setIsWishListed] = useState(false);
 
     const renderStars = () => {
         const stars = [];
         const maxStars = 5;
         for (let i = 1; i <= maxStars; i++) {
             if (i <= Math.floor(rating)) {
-                stars.push(<FaStar key={i} className="text-yellow-400" />); // Full star
+                stars.push(<FaStar key={i} className="text-yellow-400" />); 
             } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
-                stars.push(<FaStarHalfAlt key={i} className="text-yellow-400" />); // Half star
+                stars.push(<FaStarHalfAlt key={i} className="text-yellow-400" />); 
             } else {
-                stars.push(<FaRegStar key={i} className="text-yellow-400" />); // Empty star
+                stars.push(<FaRegStar key={i} className="text-yellow-400" />); 
             }
         }
         return stars;
     };
+
+    useEffect(() => {
+        const storedWishList = getAddToWishList();
+        const isProductInWishList = storedWishList.includes(product_id);
+        setIsWishListed(isProductInWishList);
+    }, [product_id]);
+
+    const handleAddToCart = (id) => {
+        addToStoredCartList(id);
+    };
+    const handleAddToWishList = (id) => {
+        addToStoredWishList(id);
+        setIsWishListed(true); 
+    };
+
+    useEffect(() => {
+        const handleStorageChange = () => {
+            const storedWishList = getAddToWishList();
+            const isProductInWishList = storedWishList.includes(product_id);
+            setIsWishListed(isProductInWishList);
+        };
+
+        window.addEventListener('storage', handleStorageChange);
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+        };
+    }, [product_id]);
 
     return (
         <div className="bg-white w-3/4 mx-auto translate -translate-y-[40%] p-8 rounded-3xl">
             <div className="flex gap-8">
                 <img
                     src={product_image}
-                    className="w-[35%] h-auto object-contain max-h-[5 00px] rounded-3xl"
+                    className="w-[35%] h-auto object-contain max-h-[500px] rounded-3xl"
                     alt={product_title} />
                 <div className="flex flex-col justify-between space-y-4">
                     <h1 className="text-3xl font-semibold">{product_title}</h1>
@@ -62,18 +90,16 @@ const GadgetDetails = () => {
                         <div className='ml-5 px-4 py-2 bg-[#09080F0D] rounded-[2rem] font-bold text-base'>{rating}</div>
                     </div>
                     <div className="flex items-center">
-                        <button className="btn btn-primary bg-[#9538E2] rounded-[2rem] text-white text-base mr-4 border-none">Add to Cart <HiOutlineShoppingCart /></button>
-                        <button className="border p-4 rounded-full ml-2 ">
+                        <button onClick={() => handleAddToCart(product_id)} className="btn btn-primary bg-[#9538E2] rounded-[2rem] text-white text-base mr-4 border-none">Add to Cart <HiOutlineShoppingCart /></button>
+                        <button onClick={() => handleAddToWishList(product_id)} className={`border p-4 rounded-full ml-2 ${isWishListed ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-white text-black'
+                            }`}
+                            disabled={isWishListed}>
                             <AiOutlineHeart />
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-
     );
 };
 
