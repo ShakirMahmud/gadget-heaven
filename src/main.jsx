@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import {
   createBrowserRouter,
+  Outlet,
   RouterProvider,
 } from "react-router-dom";
 import Root from './components/Root/Root.jsx';
@@ -12,6 +13,9 @@ import Statistics from './components/Statistics/Statistics.jsx';
 import Dashboard from './components/Dashboard/Dashboard.jsx';
 import Gadgets from './components/Gadgets/Gadgets.jsx';
 import GadgetDetails from './components/GadgetDetails/GadgetDetails.jsx';
+import Cart from './components/Dashboard/Cart.jsx';
+import WishList from './components/Dashboard/WishList.jsx';
+// import WishList from './components/WishList/WishList.jsx';
 
 const router = createBrowserRouter([
   {
@@ -42,7 +46,26 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>
+        element: <Dashboard></Dashboard>,
+        loader: ()=> fetch('/Gadgets.json'),
+        children: [
+          {
+              path: '/dashboard', // Route for Cart
+              element: <Cart></Cart>,
+              loader: ()=> fetch('../Gadgets.json'),
+          },
+          {
+              path: 'cart', // Route for Cart
+              element: <Cart></Cart>,
+              loader: ()=> fetch('../Gadgets.json'),
+          },
+          {
+              path: 'wishlist', // Route for Wishlist
+              element: <WishList></WishList>,
+              loader: ()=> fetch('../Gadgets.json'),
+          }
+      ]
+        
       },
       {
         path: '/:category/:product_id',

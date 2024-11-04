@@ -1,9 +1,10 @@
-import React from 'react';
+
 import { NavLink } from 'react-router-dom';
 import { AiOutlineHeart } from "react-icons/ai";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 
-const OtherNavBar = ({title, subtitle, cart, wishlist}) => {
+const OtherNavBar = ({title, subtitle, cart, wishlist, currentBtn, setCurrentBtn}) => {
+
     return (
         <div>
             <div className="navbar  lg:w-4/5 mx-auto  py-6">
@@ -55,14 +56,20 @@ const OtherNavBar = ({title, subtitle, cart, wishlist}) => {
                 <h2 className='font-bold text-3xl mt-8'>{title}</h2>
                 <p className='text-base mt-4'>{subtitle}</p>
                 {cart && (
-                <button className='border-2 p-5'>{cart}</button>
+                <NavLink
+                to='/dashboard/cart'
+                // onClick={()=>setCurrentBtn(true)}
+                ><button className='border-2 p-5'>{cart}</button></NavLink>
             )}
             {wishlist && (
-                <button>{wishlist}</button>
+                <NavLink
+                to='/dashboard/wishlist'
+                // onClick={()=>setCurrentBtn(false)}
+                ><button className='border-2 p-5'>{wishlist}</button></NavLink>
             )}
             </div>
         </div>
     );
 };
 
-export default OtherNavBar;
+export {OtherNavBar};

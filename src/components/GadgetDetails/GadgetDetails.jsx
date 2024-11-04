@@ -12,7 +12,6 @@ const GadgetDetails = () => {
     const [{ product_image, product_title, price, description, specification, rating, availability }] = clickedGadgets;
 
     const [isWishListed, setIsWishListed] = useState(false);
-
     const renderStars = () => {
         const stars = [];
         const maxStars = 5;

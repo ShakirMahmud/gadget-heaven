@@ -20,6 +20,13 @@ const addToStoredCartList = (id) =>{
     }
 }
 
+const removeFromCartList = (id) => {
+    let storedList = getAddToCartList();
+    storedList = storedList.filter(item => item !== id); // Remove item by filtering it out
+    localStorage.setItem('cart', JSON.stringify(storedList));
+    alert('Removed from cart successfully');
+}
+
 const getAddToWishList =()=>{
     const storedListStr = localStorage.getItem('wishlist');
     if(storedListStr){
@@ -42,5 +49,12 @@ const addToStoredWishList = (id) =>{
     }
 }
 
+const removeFromWishList = (id) => {
+    let storedList = getAddToWishList();
+    storedList = storedList.filter(item => item !== id); 
+    localStorage.setItem('wishlist', JSON.stringify(storedList));
+    alert('Removed from wishlist successfully');
+}
 
-export {addToStoredCartList, getAddToCartList, getAddToWishList, addToStoredWishList}
+
+export {addToStoredCartList, getAddToCartList, getAddToWishList, addToStoredWishList, removeFromCartList, removeFromWishList}
