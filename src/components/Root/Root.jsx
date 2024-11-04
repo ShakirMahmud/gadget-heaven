@@ -10,12 +10,20 @@ const Root = () => {
     const categories = useLoaderData();
     const location = useLocation();
     const isHome = location.pathname === '/';
-    const isCategory = categories.map(category =>location.pathname === `/category/${category.category_name}`)
-    console.log(isCategory)
+    const isCategory = Array.isArray(categories) && categories.some(category => location.pathname.startsWith(`/category/${category.category_name}`));
+    const showHomeNavAndBanner = isHome || isCategory;
     return (
         <div className='flex flex-col'>
-            {isHome ? <HomeNavBar></HomeNavBar> : <OtherNavBar></OtherNavBar>}
-            {isHome || isCategory ? <HomeBanner></HomeBanner> : <OtherBanner></OtherBanner>}
+            {/* {isHome || isCategory ? <HomeNavBar></HomeNavBar> : <OtherNavBar></OtherNavBar>} */}
+            {showHomeNavAndBanner ? <div>
+                <HomeNavBar></HomeNavBar>
+                <HomeBanner></HomeBanner>
+            </div> : 
+            <div>
+                <OtherNavBar></OtherNavBar>
+                <OtherBanner></OtherBanner>
+            </div>
+            }
             <div className='flex-grow'><Outlet></Outlet></div>
             <Footer></Footer>
         </div>

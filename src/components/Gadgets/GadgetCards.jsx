@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const GadgetCards = ({ gadget }) => {
     const {product_image, product_title, price, } = gadget;
+    const navigate = useNavigate();
     // console.log(gadget)
     return (
         <div className="card bg-base-100 w-auto shadow-xl ">
@@ -15,7 +17,7 @@ const GadgetCards = ({ gadget }) => {
                 <h2 className="card-title">{product_title}</h2>
                 <p className='text-[#09080F99] text-xl'>Price: {price}$</p>
                 <div>
-                <button className='border-2 border-[#9538E2] px-5 py-3 rounded-[2rem] text-[#9538E2] font-semibold hover:bg-[#9538E2] hover:text-white'>View Details</button>
+                <button onClick={()=> navigate(`/${gadget.category}/${gadget.product_id}`)} className='border-2 border-[#9538E2] px-5 py-3 rounded-[2rem] text-[#9538E2] font-semibold hover:bg-[#9538E2] hover:text-white'>View Details</button>
                 </div>
             </div>
         </div>
