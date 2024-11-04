@@ -11,8 +11,8 @@ const Home = () => {
     return (
         <div className='lg:w-4/5 mx-auto -translate-y-12'>
             <h2 className='font-bold text-4xl text-[#0B0B0B text-center'>Explore Cutting-Edge Gadgets</h2>
-            <div className='flex mt-12 gap-6'>
-                <div className='lg:w-1/5'>
+            <div className='lg:flex mt-6 md:mt-12 gap-6'>
+                <div className='lg:w-1/5 p-4 lg:p-0'>
                     <GadgetsCategories key={categories.category_id} categories={categories}></GadgetsCategories>
                 </div>
                 <div className=' w-full'>

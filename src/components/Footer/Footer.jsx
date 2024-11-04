@@ -2,10 +2,10 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <footer className="footer bg-white text-base-content lg:py-24 py-12 flex flex-col items-center justify-center">
+        <footer className="footer bg-white text-base-content px-2 lg:py-24 py-12 flex flex-col items-center justify-center">
             <div className='text-center'>
                 <h2 className='font-bold text-3xl text-[#09080F] text-center w-full'>Gadget Heaven</h2>
-                <p className='font-medium text-base text-[#09080F99]'>Leading the way in cutting-edge technology and innovation.</p>
+                <p className='font-medium text-base text-[#09080F99] text-center w-full'>Leading the way in cutting-edge technology and innovation.</p>
             </div>
             <div className="my-2 border-t border-gray-300 w-4/5 mx-auto"></div>
 

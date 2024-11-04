@@ -57,7 +57,7 @@
         "512GB SSD"
       ],
       "availability": true,
-      "rating": 4.7
+      "rating": 3.7
     },
     {
       "product_id": 5,
@@ -101,7 +101,7 @@
         "Adaptive Sound Control",
         "Touch sensor controls"
       ],
-      "availability": true,
+      "availability": false,
       "rating": 4.8
     },
     {

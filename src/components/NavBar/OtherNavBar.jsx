@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { AiOutlineHeart } from "react-icons/ai";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 
-const OtherNavBar = () => {
+const OtherNavBar = ({title, subtitle, cart, wishlist}) => {
     return (
         <div>
             <div className="navbar  lg:w-4/5 mx-auto  py-6">
@@ -51,9 +51,15 @@ const OtherNavBar = () => {
                 </button>
             </div>
         </div>
-        <div className='h-[463px] bg-banner border-2 text-center text-white'>
-                <h2>Product Details</h2>
-                <p>Explore the latest gadgets that will take your experience to the next level. From smart devices to the coolest accessories, we have it all!</p>
+        <div className='h-[400px] bg-banner border-2 text-center text-white'>
+                <h2 className='font-bold text-3xl mt-8'>{title}</h2>
+                <p className='text-base mt-4'>{subtitle}</p>
+                {cart && (
+                <button className='border-2 p-5'>{cart}</button>
+            )}
+            {wishlist && (
+                <button>{wishlist}</button>
+            )}
             </div>
         </div>
     );

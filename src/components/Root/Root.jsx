@@ -4,13 +4,14 @@ import Footer from '../Footer/Footer';
 import HomeNavBar from '../NavBar/HomeNavBar';
 import OtherNavBar from '../NavBar/OtherNavBar';
 import HomeBanner from '../Banner/HomeBanner';
-import OtherBanner from '../Banner/OtherBanner';
 
 const Root = () => {
     const categories = useLoaderData();
     const location = useLocation();
     const isHome = location.pathname === '/';
-    const isCategory = Array.isArray(categories) && categories.some(category => location.pathname.startsWith(`/category/${category.category_name}`));
+    const isDashboard = location.pathname.startsWith('/dashboard');
+    console.log(isDashboard)
+    const isCategory = Array.isArray(categories) && categories.some(category => location.pathname === `/category/${category.category_name}`);
     const showHomeNavAndBanner = isHome || isCategory;
     return (
         <div className='flex flex-col'>
@@ -20,8 +21,21 @@ const Root = () => {
                 <HomeBanner></HomeBanner>
             </div> : 
             <div>
-                <OtherNavBar></OtherNavBar>
-                <OtherBanner></OtherBanner>
+                {
+                    isDashboard ? <OtherNavBar
+                        title='Dashboard'
+                        subtitle='Explore the latest gadgets that will take your experience to the next level. From smart devices to the coolest accessories, we have it all!'
+                        cart = 'cart'
+                        wishlist = 'wishlist'
+                    ></OtherNavBar>
+                    :
+                    <OtherNavBar
+                    title='Product Details'
+                    subtitle='Explore the latest gadgets that will take your experience to the next level. From smart devices to the coolest accessories, we have it all!'
+                    cart = ''
+                    wishlist = ''
+                    ></OtherNavBar>
+                }
             </div>
             }
             <div className='flex-grow'><Outlet></Outlet></div>
