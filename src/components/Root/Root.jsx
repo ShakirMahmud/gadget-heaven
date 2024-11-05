@@ -4,6 +4,10 @@ import Footer from '../Footer/Footer';
 import HomeNavBar from '../NavBar/HomeNavBar';
 import { OtherNavBar } from '../NavBar/OtherNavBar';
 import HomeBanner from '../Banner/HomeBanner';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const Root = () => {
 
@@ -14,7 +18,9 @@ const Root = () => {
     const isCategory = Array.isArray(categories) && categories.some(category => location.pathname === `/category/${category.category_name}`);
     const showHomeNavAndBanner = isHome || isCategory;
     return (
+        
         <div className='flex flex-col'>
+          <ToastContainer />
             {/* {isHome || isCategory ? <HomeNavBar></HomeNavBar> : <OtherNavBar></OtherNavBar>} */}
             {showHomeNavAndBanner ? <div>
                 <HomeNavBar></HomeNavBar>

@@ -9,8 +9,15 @@ const HomeNavBar = () => {
     const [totalProductsInWishList, setTotalProductsInWishList] = useState(getAddToWishList().length);
 
     useEffect(() => {
-        setTotalProductsInCart(getAddToCartList().length);
-        setTotalProductsInWishList(getAddToWishList().length);
+        const handleStorageChange = () => {
+            setTotalProductsInCart(getAddToCartList().length);
+            setTotalProductsInWishList(getAddToWishList().length);
+        };
+        window.addEventListener('storage', handleStorageChange);
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+        };
     }, []);
 
     const getLinkClass = ({ isActive }) => 
@@ -38,18 +45,18 @@ const HomeNavBar = () => {
                         <ul
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-[#9538E2] rounded-box z-[1] mt-3 w-52 p-2 shadow font-medium text-base flex justify-center">
-                            <NavLink to='/' ><button className={getLinkClass}>Home</button></NavLink>
-                            <NavLink to='/statistics' className={getLinkClass}><button className={getLinkClass}>Statistics</button></NavLink>
-                            <NavLink to='/dashboard' className={getLinkClass}><button className={getLinkClass}>Dashboard</button></NavLink>
+                            <NavLink  className={getLinkClass} to='/' ><button>Home</button></NavLink>
+                            <NavLink className={getLinkClass} to='/statistics' ><button >Statistics</button></NavLink>
+                            <NavLink className={getLinkClass} to='/dashboard' ><button >Dashboard</button></NavLink>
                         </ul>
                     </div>
                     <NavLink to='/' className="btn btn-ghost text-xl">Gadget Heaven</NavLink>
                 </div>
                 <div className="navbar-center hidden lg:flex justify-center">
                     <ul className="menu menu-horizontal px-1 gap-12 font-medium text-base">
-                        <NavLink to='/' className={getLinkClass}>Home</NavLink>
-                        <NavLink to='/statistics' className={getLinkClass}>Statistics</NavLink>
-                        <NavLink to='/dashboard' className={getLinkClass}>Dashboard</NavLink>
+                    <NavLink  className={getLinkClass} to='/' ><button>Home</button></NavLink>
+                            <NavLink className={getLinkClass} to='/statistics' ><button >Statistics</button></NavLink>
+                            <NavLink className={getLinkClass} to='/dashboard' ><button >Dashboard</button></NavLink>
                     </ul>
                 </div>
                 <div className="navbar-end gap-6">
@@ -87,7 +94,7 @@ const HomeNavBar = () => {
                 <div className='text-center text-white w-[72.72%] mx-auto'>
                     <h1 className='font-bold text-3xl lg:text-6xl mt-8 lg:mt-8'>Upgrade Your Tech Accessorize with Gadget Heaven Accessories</h1>
                     <p className='mt-6 text-base'>Explore the latest gadgets that will take your experience to the next level. From smart devices to the coolest accessories, we have it all!</p>
-                    <button className='mt-8 mb-44 lg:mb-[268px] text-[#9538E2] font-bold text-xl bg-white px-7 py-4 shadow-custom-inset rounded-[32px]'>Shop Now</button>
+                    <NavLink to='/dashboard'><button className='mt-8 mb-44 lg:mb-[268px] text-[#9538E2] font-bold text-xl bg-white px-7 py-4 shadow-custom-inset rounded-[32px]'>Shop Now</button></NavLink>
                 </div>
             </div>
         </div>

@@ -41,6 +41,7 @@ const GadgetDetails = () => {
     const handleAddToWishList = (id) => {
         addToStoredWishList(id);
         setIsWishListed(true); 
+
     };
 
     useEffect(() => {

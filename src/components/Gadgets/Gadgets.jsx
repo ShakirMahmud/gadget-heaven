@@ -2,31 +2,43 @@ import { useLoaderData, useParams } from "react-router-dom";
 import GadgetCards from "./GadgetCards";
 import { useEffect, useState } from "react";
 
+// Create a simple "NoData" component to display when no gadgets are found
+const NoData = () => {
+    return (
+        <div className="col-span-3 row-span-3 flex items-center justify-center mt-28">
+            <div className="text-center py-8">
+            <h2 className="text-4xl font-bold text-red-700 mb-6">No data found</h2>
+            <p>We couldn't find any gadgets for this category.</p>
+        </div>
+        </div>
+    );
+};
 
 const Gadgets = () => {
     const gadgets = useLoaderData();
-    const {category} = useParams();
+    const { category } = useParams();
     const [gadgetsByCategory, setGadgetsByCategory] = useState([]);
 
-    useEffect(()=>{
-        if(category){
-            const filteredByCategory = [...gadgets].filter(
-                gadget => gadget.category === category
-            )
-            
+    useEffect(() => {
+        if (category) {
+            const filteredByCategory = gadgets.filter(
+                (gadget) => gadget.category === category
+            );
             setGadgetsByCategory(filteredByCategory);
-        }else{
-            setGadgetsByCategory(gadgets)
+        } else {
+            setGadgetsByCategory(gadgets);
         }
-    },[category, gadgets]);
+    }, [category, gadgets]);
+
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 lg:p-0">
-            {
-                gadgetsByCategory.map(gadget => <GadgetCards
-                    key={gadget.product_id}
-                    gadget={gadget}
-                ></GadgetCards>)
-            }
+            {gadgetsByCategory.length > 0 ? (
+                gadgetsByCategory.map((gadget) => (
+                    <GadgetCards key={gadget.product_id} gadget={gadget} />
+                ))
+            ) : (
+                <NoData />
+            )}
         </div>
     );
 };

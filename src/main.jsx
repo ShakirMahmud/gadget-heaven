@@ -15,8 +15,10 @@ import Gadgets from './components/Gadgets/Gadgets.jsx';
 import GadgetDetails from './components/GadgetDetails/GadgetDetails.jsx';
 import Cart from './components/Dashboard/Cart.jsx';
 import WishList from './components/Dashboard/WishList.jsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { HelmetProvider } from 'react-helmet-async';
 
-// import WishList from './components/WishList/WishList.jsx';
 
 const router = createBrowserRouter([
   {
@@ -79,10 +81,11 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    
-    <RouterProvider router={router} >
+    <HelmetProvider>
 
+    <RouterProvider router={router} >
     </RouterProvider>
+    </HelmetProvider>
      
   </StrictMode>,
 )

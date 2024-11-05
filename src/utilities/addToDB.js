@@ -1,62 +1,89 @@
-const getAddToCartList =()=>{
+import { toast } from 'react-toastify';
+
+const getAddToCartList = () => {
     const storedListStr = localStorage.getItem('cart');
-    if(storedListStr){
+    if (storedListStr) {
         const storedList = JSON.parse(storedListStr);
         return storedList;
-    }else{
+    } else {
         return [];
     }
-}
+};
 
-const addToStoredCartList = (id) =>{
+const addToStoredCartList = (id) => {
     const storedList = getAddToCartList();
     const alreadyInCart = storedList.some(item => item === id);
-    if(alreadyInCart){
-        alert('already added')
-    }else{
+    if (alreadyInCart) {
+        toast.warn('Item already added to cart!', {
+            position: 'top-right',
+                autoClose: 3000,
+        });
+    } else {
         storedList.push(id);
         localStorage.setItem('cart', JSON.stringify(storedList));
-        alert('added to cart successfully');
+        console.log('Toast:', toast),
+        console.log('Toast POSITION:', toast.POSITION);
+
+        toast.success('Added to cart successfully!', {
+                position: 'top-right',
+                autoClose: 3000,
+        });
     }
-}
+};
 
 const removeFromCartList = (id) => {
     let storedList = getAddToCartList();
-    storedList = storedList.filter(item => item !== id.toString()); 
+    storedList = storedList.filter(item => item !== id.toString());
     localStorage.setItem('cart', JSON.stringify(storedList));
-    // alert('Removed from cart successfully');
+    toast.info('Removed from cart successfully!', {
+        position: 'top-right',
+                autoClose: 3000,
+    });
 };
 
-
-const getAddToWishList =()=>{
+const getAddToWishList = () => {
     const storedListStr = localStorage.getItem('wishlist');
-    if(storedListStr){
+    if (storedListStr) {
         const storedList = JSON.parse(storedListStr);
         return storedList;
-    }else{
+    } else {
         return [];
     }
-}
+};
 
-const addToStoredWishList = (id) =>{
+const addToStoredWishList = (id) => {
     const storedList = getAddToWishList();
     const alreadyInWishList = storedList.some(item => item === id);
-    if(alreadyInWishList){
-        alert('already added')
-    }else{
+    if (alreadyInWishList) {
+        toast.warn('Item already added to wishlist!', {
+            position: 'top-right',
+                autoClose: 3000,
+        });
+    } else {
         storedList.push(id);
         localStorage.setItem('wishlist', JSON.stringify(storedList));
-        alert('added to cart successfully')
-     
+        toast.success('Added to wishlist successfully!', {
+            position: 'top-right',
+                autoClose: 3000,
+        });
     }
-}
+};
 
 const removeFromWishList = (id) => {
     let storedList = getAddToWishList();
-    storedList = storedList.filter(item => item !== id.toString()); 
+    storedList = storedList.filter(item => item !== id.toString());
     localStorage.setItem('wishlist', JSON.stringify(storedList));
-    // alert('Removed from wishlist successfully');
-  
-}
+    toast.info('Removed from wishlist successfully!', {
+        position: 'top-right',
+                autoClose: 3000,
+    });
+};
 
-export {addToStoredCartList, getAddToCartList, getAddToWishList, addToStoredWishList, removeFromCartList, removeFromWishList}
+export {
+    addToStoredCartList,
+    getAddToCartList,
+    getAddToWishList,
+    addToStoredWishList,
+    removeFromCartList,
+    removeFromWishList
+};
