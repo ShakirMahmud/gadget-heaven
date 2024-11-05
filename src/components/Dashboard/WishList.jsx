@@ -1,12 +1,14 @@
 import { RxCrossCircled } from "react-icons/rx";
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { addToStoredCartList, getAddToWishList, removeFromWishList } from "../../utilities/addToDB";
 import { HiOutlineShoppingCart } from "react-icons/hi";
+import { WishlistContext } from "../../context";
 
 const WishList = () => {
     const [wishList, setWishList] = useState([]);
     const gadgets = useLoaderData();
+    const { setWishlistLength } = useContext(WishlistContext);
 
     useEffect(() => {
         const storedWishList = getAddToWishList();
@@ -20,12 +22,16 @@ const WishList = () => {
         setWishList(updatedWishList);
         removeFromWishList(productId);
         addToStoredCartList(productId);
+        const storedList = getAddToWishList(); 
+        setWishlistLength(storedList.length);
     };
 
     const handleRemove = (productId) => {
         const updatedWishList = wishList.filter(gadget => gadget.product_id !== productId);
         setWishList(updatedWishList);
         removeFromWishList(productId); 
+        const storedList = getAddToWishList(); 
+        setWishlistLength(storedList.length);
     };
 
     return (
@@ -34,15 +40,14 @@ const WishList = () => {
             {
                 wishList.map(gadget => (
                     <div key={gadget.product_id} className='flex justify-between  bg-white p-8 rounded-2xl my-6'>
-                        {/* Flex container for image and details */}
-                        <div className="flex gap-8">
+                        <div className="flex flex-col lg:flex-row gap-8">
                             <div>
                                 <img className='w-52 h-[125px] object-contain rounded-xl' src={gadget.product_image} alt="" />
                             </div>
-                            <div className='flex flex-col justify-between'>
-                                <h2>{gadget.product_title}</h2>
+                            <div className='flex flex-col text-center lg:text-start space-y-3 justify-between'>
+                                <h2 className="text-xl font-bold">{gadget.product_title}</h2>
                                 <p>{gadget.description}</p>
-                                <p>Price: {gadget.price}</p>
+                                <p className="text-lg font-medium">Price: ${gadget.price}</p>
                                 <div>
                                     <button 
                                         onClick={() => handleAddToWishlist(gadget.product_id)} 
@@ -52,7 +57,6 @@ const WishList = () => {
                                 </div>
                             </div>
                         </div>
-                        {/* This div places the "X" at the end */}
                         <div className="text-red-600 text-3xl cursor-pointer" onClick={() => handleRemove(gadget.product_id)}>
                             <RxCrossCircled />
                         </div>

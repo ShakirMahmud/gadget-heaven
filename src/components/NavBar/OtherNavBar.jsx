@@ -1,18 +1,17 @@
 import { NavLink } from 'react-router-dom';
 import { AiOutlineHeart } from "react-icons/ai";
 import { HiOutlineShoppingCart } from "react-icons/hi";
-import { useContext, useEffect, useState } from 'react';
-import { getAddToCartList, getAddToWishList } from '../../utilities/addToDB';
-import icon from '../../assets/favicon-16x16.png'
+import { useContext } from 'react';
+
 import { CartContext, WishlistContext } from '../../context';
 
 const OtherNavBar = ({ title, subtitle, cart, wishlist, isDashboard, isWhyChooseUs, isStatistics }) => {
-    const {cartLength} = useContext(CartContext);
-    const {wishlistLength} = useContext(WishlistContext);
-    
-    const getLinkClass = ({ isActive }) => 
+    const { cartLength } = useContext(CartContext);
+    const { wishlistLength } = useContext(WishlistContext);
+
+    const getLinkClass = ({ isActive }) =>
         `text-base font-medium ${isActive ? 'text-black border-2 border-black p-2 rounded-full' : 'text-[#0B0B0BB3]'}`
-    
+
     return (
         <div>
             <div className="navbar lg:w-4/5 mx-auto py-6">
@@ -41,7 +40,6 @@ const OtherNavBar = ({ title, subtitle, cart, wishlist, isDashboard, isWhyChoose
                             <NavLink className={getLinkClass} to='/whyChooseUs' ><button >WhyChooseUs</button></NavLink>
                         </ul>
                     </div>
-                    <img src={icon} alt="" />
                     <NavLink to='/' className="btn btn-ghost hover:bg-transparent hover:shadow-none text-xl">Gadget Heaven</NavLink>
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -52,44 +50,41 @@ const OtherNavBar = ({ title, subtitle, cart, wishlist, isDashboard, isWhyChoose
                         <NavLink className={getLinkClass} to='/whyChooseUs' ><button >WhyChooseUs</button></NavLink>
                     </ul>
                 </div>
-                <div className="navbar-end gap-6">
-                    <NavLink className='flex' to="/dashboard/cart">
-                        <button className="border p-3 rounded-full">
+                <div className="navbar-end flex items-center gap-4">
+                    <NavLink to="/dashboard/cart" className="relative flex items-center">
+                        <button className="border p-3 rounded-full flex items-center justify-center">
                             <HiOutlineShoppingCart />
                         </button>
-                        <div>
-                            {cartLength > 0 && (
-                                <div className="rounded-full p-1 w-8 flex justify-center -translate-x-3 -translate-y-3 text-black border bg-white text-base">
-                                    {cartLength}
-                                </div>
-                            )}
-                        </div>
+                        {cartLength > 0 && (
+                            <div className="absolute -top-2 -right-2 rounded-full w-5 h-5 flex items-center justify-center text-black bg-white border text-xs shadow-md">
+                                {cartLength}
+                            </div>
+                        )}
                     </NavLink>
-                    <NavLink className='flex' to="/dashboard/wishlist">
-                        <button className="border p-3 rounded-full">
+                    <NavLink to="/dashboard/wishlist" className="relative flex items-center">
+                        <button className="border p-3 rounded-full flex items-center justify-center">
                             <AiOutlineHeart />
                         </button>
-                        <div>
-                            {wishlistLength > 0 && (
-                                <div className="rounded-full p-1 w-8 flex justify-center -translate-x-3 -translate-y-3 text-black border bg-white text-base">
-                                    {wishlistLength}
-                                </div>
-                            )}
-                        </div>
+                        {wishlistLength > 0 && (
+                            <div className="absolute -top-2 -right-2 rounded-full w-5 h-5 flex items-center justify-center text-black bg-white border text-xs shadow-md">
+                                {wishlistLength}
+                            </div>
+                        )}
                     </NavLink>
                 </div>
+
             </div>
-            <div className={`${isDashboard || isWhyChooseUs || isStatistics ? 'h-auto' : 'h-[400px]'} bg-banner border-2 text-center text-white`}>
+            <div className={`${isDashboard || isWhyChooseUs || isStatistics ? 'h-auto' : 'h-[400px]'} bg-banner border-2 text-center p-2 lg:p-0 text-white`}>
                 <h2 className='font-bold text-3xl mt-8'>{title}</h2>
                 <p className='text-base mt-4'>{subtitle}</p>
-                <div className='my-8'>
+                <div className='my-8 flex flex-col space-y-3 lg:block'>
                     {cart && (
                         <NavLink
                             to="/dashboard/cart"
                             className={({ isActive }) =>
                                 isActive || window.location.pathname === '/dashboard'
-                                    ? 'border-2 px-16 py-3 rounded-[2rem] mr-6 bg-white text-[#9538E2] font-[800]'
-                                    : 'border-2 px-16 py-3 rounded-[2rem] mr-6 text-white border-[#FFFFFF]'
+                                    ? 'border-2 px-16 py-3 rounded-[2rem] lg:mr-6 bg-white text-[#9538E2] font-[800]'
+                                    : 'border-2 px-16 py-3 rounded-[2rem] lg:mr-6 text-white border-[#FFFFFF]'
                             }
                         >
                             <button>{cart}</button>
@@ -100,8 +95,8 @@ const OtherNavBar = ({ title, subtitle, cart, wishlist, isDashboard, isWhyChoose
                             to="/dashboard/wishlist"
                             className={({ isActive }) =>
                                 isActive
-                                    ? 'border-2 px-16 py-3 rounded-[2rem] bg-white text-[#9538E2] font-[800]'
-                                    : 'border-2 px-16 py-3 rounded-[2rem] text-white border-[#FFFFFF]'
+                                    ? 'border-2 lg:px-16 py-3 rounded-[2rem] bg-white text-[#9538E2] font-[800]'
+                                    : 'border-2 lg:px-16 py-3 rounded-[2rem] text-white border-[#FFFFFF]'
                             }
                         >
                             <button>{wishlist}</button>

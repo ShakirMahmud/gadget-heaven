@@ -51,7 +51,7 @@ const Statistics = () => {
     };
 
     return (
-        <div className="w-4/5 mx-auto my-12">
+        <div className="lg:w-4/5 p-2 mx-auto my-12">
             <Helmet>
                 <title>Statistics || Gadget-Heaven</title>
             </Helmet>

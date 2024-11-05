@@ -6,15 +6,15 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { addToStoredCartList, addToStoredWishList, getAddToCartList, getAddToWishList } from '../../utilities/addToDB';
 import { CartContext, WishlistContext } from '../../context';
 
-
 const GadgetDetails = () => {
     const { product_id } = useParams();
     const allGadgets = useLoaderData();
     const clickedGadgets = allGadgets.filter(gadget => gadget.product_id == product_id);
     const [{ product_image, product_title, price, description, specification, rating, availability }] = clickedGadgets;
-    const {setCartLength} = useContext(CartContext);
-    const {setWishlistLength} = useContext(WishlistContext);
+    const { setCartLength } = useContext(CartContext);
+    const { setWishlistLength } = useContext(WishlistContext);
     const [isWishListed, setIsWishListed] = useState(false);
+
     const renderStars = () => {
         const stars = [];
         const maxStars = 5;
@@ -46,16 +46,15 @@ const GadgetDetails = () => {
         addToStoredWishList(id);
         const storedList = getAddToWishList(); 
         setWishlistLength(storedList.length); 
+        setIsWishListed(true); 
     };
     
-    
-
     return (
-        <div className="bg-white w-3/4 mx-auto translate -translate-y-[40%] p-8 rounded-3xl">
-            <div className="flex gap-8">
+        <div className="bg-white w-3/4 mx-auto translate -translate-y-[20%] md:-translate-y-[40%] p-8 rounded-3xl">
+            <div className="flex flex-col lg:flex-row gap-8">
                 <img
                     src={product_image}
-                    className="w-[35%] h-auto object-contain max-h-[500px] rounded-3xl"
+                    className="lg:w-[35%] h-auto object-contain max-h-[500px] rounded-3xl"
                     alt={product_title} />
                 <div className="flex flex-col justify-between space-y-4">
                     <h1 className="text-3xl font-semibold">{product_title}</h1>
@@ -84,10 +83,19 @@ const GadgetDetails = () => {
                         <div className='ml-5 px-4 py-2 bg-[#09080F0D] rounded-[2rem] font-bold text-base'>{rating}</div>
                     </div>
                     <div className="flex items-center">
-                        <button onClick={() => handleAddToCart(product_id)} className="btn btn-primary bg-[#9538E2] rounded-[2rem] text-white text-base mr-4 border-none">Add to Cart <HiOutlineShoppingCart /></button>
-                        <button onClick={() => handleAddToWishList(product_id)} className={`border p-4 rounded-full ml-2 ${isWishListed ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-white text-black'
-                            }`}
-                            disabled={isWishListed}>
+                        <button
+                            onClick={() => handleAddToCart(product_id)}
+                            className="btn btn-primary bg-[#9538E2] rounded-[2rem] text-white text-base mr-4 border-none"
+                            disabled={!availability} 
+                        >
+                            Add to Cart <HiOutlineShoppingCart />
+                        </button>
+                        <button
+                            onClick={() => handleAddToWishList(product_id)}
+                            className={`border p-4 rounded-full ml-2 ${isWishListed ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-white text-black'
+                                }`}
+                            disabled={isWishListed} 
+                        >
                             <AiOutlineHeart />
                         </button>
                     </div>

@@ -1,14 +1,12 @@
 import { AiOutlineHeart } from "react-icons/ai";
 import { HiOutlineShoppingCart } from "react-icons/hi";
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { getAddToCartList, getAddToWishList } from "../../utilities/addToDB";
-import icon from '../../assets/favicon-16x16.png'
 import { CartContext, WishlistContext } from "../../context";
 
 const HomeNavBar = () => {
-    const {cartLength} = useContext(CartContext);
-    const {wishlistLength} = useContext(WishlistContext);
+    const { cartLength } = useContext(CartContext);
+    const { wishlistLength } = useContext(WishlistContext);
 
     const getLinkClass = ({ isActive }) =>
         `menu-item ${isActive ? 'text-white font-bold border-2 p-2 rounded-full' : 'text-white p-2'}`;
@@ -41,7 +39,6 @@ const HomeNavBar = () => {
                             <NavLink className={getLinkClass} to='/whyChooseUs' ><button >WhyChooseUs</button></NavLink>
                         </ul>
                     </div>
-                    <img src={icon} alt="" />
                     <NavLink to='/' className="btn btn-ghost hover:bg-transparent hover:shadow-none text-xl">Gadget Heaven</NavLink>
                 </div>
                 <div className="navbar-center hidden lg:flex justify-center">
@@ -52,36 +49,33 @@ const HomeNavBar = () => {
                         <NavLink className={getLinkClass} to='/whyChooseUs' ><button >Why Choose Us</button></NavLink>
                     </ul>
                 </div>
-                <div className="navbar-end gap-6">
-                    <NavLink
-                        to="/dashboard/cart"
-                        className='flex'>
-                        <button className="border p-3 rounded-full">
+                <div className="navbar-end flex  gap-4 items-center">
+                    <NavLink to="/dashboard/cart" className="relative flex items-center">
+                        <button className="border p-3 rounded-full flex items-center justify-center">
                             <HiOutlineShoppingCart />
                         </button>
-                        <div>
-                            {cartLength > 0 && (
-                                <div className="rounded-full p-1 w-8 flex justify-center -translate-x-3 -translate-y-3 text-[#9538E2] bg-white text-base">
-                                    {cartLength}
-                                </div>
-                            )}
-                        </div>
+                        {/* Cart Counter */}
+                        {cartLength > 0 && (
+                            <div className="absolute -top-2 -right-2 rounded-full w-5 h-5 flex items-center justify-center text-[#9538E2] bg-white text-xs shadow-md">
+                                {cartLength}
+                            </div>
+                        )}
                     </NavLink>
-                    <NavLink
-                        className='flex'
-                        to="/dashboard/wishlist">
-                        <button className="border p-3 rounded-full">
+
+                    <NavLink to="/dashboard/wishlist" className="relative flex items-center">
+                        <button className="border p-3 rounded-full flex items-center justify-center">
                             <AiOutlineHeart />
                         </button>
-                        <div>
-                            {wishlistLength > 0 && (
-                                <div className="rounded-full p-1 w-8 flex justify-center -translate-x-3 -translate-y-3 text-[#9538E2] bg-white text-base">
-                                    {wishlistLength}
-                                </div>
-                            )}
-                        </div>
+                        {/* Wishlist Counter */}
+                        {wishlistLength > 0 && (
+                            <div className="absolute -top-2 -right-2 rounded-full w-5 h-5 flex items-center justify-center text-[#9538E2] bg-white text-xs shadow-md">
+                                {wishlistLength}
+                            </div>
+                        )}
                     </NavLink>
                 </div>
+
+
             </div>
             <div>
                 <div className='text-center text-white w-[72.72%] mx-auto'>

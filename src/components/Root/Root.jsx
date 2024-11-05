@@ -13,7 +13,9 @@ import { CartContext, WishlistContext } from '../../context';
 
 const Root = () => {
 
-    const  [cartLength, setCartLength] = useState(0);
+    const currentCartLength = getAddToCartList.length;
+
+    const  [cartLength, setCartLength] = useState(currentCartLength);
     const  [wishlistLength, setWishlistLength] = useState(0);
 
     const categories = useLoaderData();
