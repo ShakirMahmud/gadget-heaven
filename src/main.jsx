@@ -18,12 +18,15 @@ import WishList from './components/Dashboard/WishList.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { HelmetProvider } from 'react-helmet-async';
+import WhyChooseUs from './components/WhyChooseUs/WhyChooseUs.jsx';
+import ErrorPage from './components/ErrorPage/ErrorPage.jsx';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     loader: ()=> fetch('../GadgetCategories.json'),
     children:[
       {
@@ -45,7 +48,8 @@ const router = createBrowserRouter([
       },
       {
         path: '/statistics',
-        element: <Statistics></Statistics>
+        element: <Statistics></Statistics>,
+        loader: ()=> fetch('/Gadgets.json'),
       },
       {
         path: '/dashboard',
@@ -74,6 +78,10 @@ const router = createBrowserRouter([
         path: '/:category/:product_id',
         element: <GadgetDetails></GadgetDetails>,
         loader: ()=> fetch('/Gadgets.json'),
+      },
+      {
+        path: '/WhyChooseUs',
+        element: <WhyChooseUs></WhyChooseUs>
       }
     ]
   },

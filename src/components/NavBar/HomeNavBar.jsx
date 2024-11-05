@@ -20,7 +20,7 @@ const HomeNavBar = () => {
         };
     }, []);
 
-    const getLinkClass = ({ isActive }) => 
+    const getLinkClass = ({ isActive }) =>
         `menu-item ${isActive ? 'text-white font-bold border-2 p-2 rounded-full' : 'text-white p-2'}`;
 
     return (
@@ -45,18 +45,20 @@ const HomeNavBar = () => {
                         <ul
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-[#9538E2] rounded-box z-[1] mt-3 w-52 p-2 shadow font-medium text-base flex justify-center">
-                            <NavLink  className={getLinkClass} to='/' ><button>Home</button></NavLink>
+                            <NavLink className={getLinkClass} to='/' ><button>Home</button></NavLink>
                             <NavLink className={getLinkClass} to='/statistics' ><button >Statistics</button></NavLink>
                             <NavLink className={getLinkClass} to='/dashboard' ><button >Dashboard</button></NavLink>
+                            <NavLink className={getLinkClass} to='/whyChooseUs' ><button >WhyChooseUs</button></NavLink>
                         </ul>
                     </div>
-                    <NavLink to='/' className="btn btn-ghost text-xl">Gadget Heaven</NavLink>
+                    <NavLink to='/' className="btn btn-ghost hover:bg-transparent hover:shadow-none text-xl">Gadget Heaven</NavLink>
                 </div>
                 <div className="navbar-center hidden lg:flex justify-center">
                     <ul className="menu menu-horizontal px-1 gap-12 font-medium text-base">
-                    <NavLink  className={getLinkClass} to='/' ><button>Home</button></NavLink>
-                            <NavLink className={getLinkClass} to='/statistics' ><button >Statistics</button></NavLink>
-                            <NavLink className={getLinkClass} to='/dashboard' ><button >Dashboard</button></NavLink>
+                        <NavLink className={getLinkClass} to='/' ><button>Home</button></NavLink>
+                        <NavLink className={getLinkClass} to='/statistics' ><button >Statistics</button></NavLink>
+                        <NavLink className={getLinkClass} to='/dashboard' ><button >Dashboard</button></NavLink>
+                        <NavLink className={getLinkClass} to='/whyChooseUs' ><button >Why Choose Us</button></NavLink>
                     </ul>
                 </div>
                 <div className="navbar-end gap-6">

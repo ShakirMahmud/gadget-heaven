@@ -4,7 +4,7 @@ import { HiOutlineShoppingCart } from "react-icons/hi";
 import { useEffect, useState } from 'react';
 import { getAddToCartList, getAddToWishList } from '../../utilities/addToDB';
 
-const OtherNavBar = ({ title, subtitle, cart, wishlist, isDashboard }) => {
+const OtherNavBar = ({ title, subtitle, cart, wishlist, isDashboard, isWhyChooseUs, isStatistics }) => {
     const [totalProductsInCart, setTotalProductsInCart] = useState(getAddToCartList().length);
     const [totalProductsInWishList, setTotalProductsInWishList] = useState(getAddToWishList().length);
 
@@ -48,15 +48,17 @@ const OtherNavBar = ({ title, subtitle, cart, wishlist, isDashboard }) => {
                             <NavLink to='/' className={getLinkClass}>Home</NavLink>
                             <NavLink to='/statistics' className={getLinkClass}>Statistics</NavLink>
                             <NavLink to='/dashboard' className={getLinkClass}>Dashboard</NavLink>
+                            <NavLink className={getLinkClass} to='/whyChooseUs' ><button >WhyChooseUs</button></NavLink>
                         </ul>
                     </div>
-                    <NavLink to='/' className="btn btn-ghost text-xl">Gadget Heaven</NavLink>
+                    <NavLink to='/' className="btn btn-ghost hover:bg-transparent hover:shadow-none text-xl">Gadget Heaven</NavLink>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 gap-12 font-medium text-base flex justify-center items-center">
                         <NavLink to='/' className={getLinkClass}>Home</NavLink>
                         <NavLink to='/statistics' className={getLinkClass}>Statistics</NavLink>
                         <NavLink to='/dashboard' className={getLinkClass}>Dashboard</NavLink>
+                        <NavLink className={getLinkClass} to='/whyChooseUs' ><button >WhyChooseUs</button></NavLink>
                     </ul>
                 </div>
                 <div className="navbar-end gap-6">
@@ -86,7 +88,7 @@ const OtherNavBar = ({ title, subtitle, cart, wishlist, isDashboard }) => {
                     </NavLink>
                 </div>
             </div>
-            <div className={`${isDashboard ? 'h-auto' : 'h-[400px]'} bg-banner border-2 text-center text-white`}>
+            <div className={`${isDashboard || isWhyChooseUs || isStatistics ? 'h-auto' : 'h-[400px]'} bg-banner border-2 text-center text-white`}>
                 <h2 className='font-bold text-3xl mt-8'>{title}</h2>
                 <p className='text-base mt-4'>{subtitle}</p>
                 <div className='my-8'>

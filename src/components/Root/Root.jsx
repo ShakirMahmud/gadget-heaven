@@ -15,6 +15,8 @@ const Root = () => {
     const location = useLocation();
     const isHome = location.pathname === '/';
     const isDashboard = location.pathname.startsWith('/dashboard');
+    const isWhyChooseUs = location.pathname.startsWith('/whyChooseUs');
+    const isStatistics = location.pathname.startsWith('/statistics');
     const isCategory = Array.isArray(categories) && categories.some(category => location.pathname === `/category/${category.category_name}`);
     const showHomeNavAndBanner = isHome || isCategory;
     return (
@@ -32,10 +34,28 @@ const Root = () => {
                         isDashboard={isDashboard}
                             title='Dashboard'
                             subtitle='Explore the latest gadgets that will take your experience to the next level. From smart devices to the coolest accessories, we have it all!'
-                            cart='cart'
-                            wishlist='wishlist'
+                            cart='Cart'
+                            wishlist='Wishlist'
                             
                         ></OtherNavBar>
+                            :
+                            isWhyChooseUs ?
+                            <OtherNavBar
+                            isWhyChooseUs={isWhyChooseUs}
+                            title='Why Choose Us?'
+                            subtitle='Discover why Gadget Heaven is the best choice for your tech accessories needs!'
+                            cart=''
+                            wishlist=''
+                            ></OtherNavBar>
+                            :
+                            isStatistics ?
+                            <OtherNavBar
+                            isStatistics={isStatistics}
+                            title='Statistics'
+                            subtitle='See how Gadget Heaven is helping to improve your tech accessories experience!'
+                            cart=''
+                            wishlist=''
+                            ></OtherNavBar>
                             :
                             <OtherNavBar
                                 title='Product Details'
