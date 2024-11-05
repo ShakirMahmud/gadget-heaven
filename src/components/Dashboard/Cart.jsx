@@ -1,8 +1,9 @@
-import { IoCheckmarkDoneCircle } from "react-icons/io5"; 
+
 import { useEffect, useState } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { getAddToCartList, removeFromCartList } from '../../utilities/addToDB';
 import { RxCrossCircled } from 'react-icons/rx';
+import modalImg from '../../assets/Group.png'
 
 const Cart = () => {
     const [cartList, setCartList] = useState([]);
@@ -51,7 +52,7 @@ const Cart = () => {
             <div className='w-4/5 mx-auto flex items-center justify-between my-12'>
                 <h2 className="text-xl font-semibold">Cart</h2>
                 <div className='flex items-center space-x-5'>
-                    <h3 className="text-lg font-bold">Total Cost: {totalCost}</h3>
+                    <h3 className="text-lg font-bold">Total Cost: ${totalCost}</h3>
                     <button
                         onClick={handleSort}
                         className="ml-4 px-6 py-4 bg-blue-500 text-white rounded-full hover:bg-blue-600"
@@ -72,7 +73,7 @@ const Cart = () => {
             {isPurchased ? (
                 <dialog id="my_modal_1" className="modal modal-open">
                     <div className="modal-box flex flex-col items-center justify-center space-y-6">
-                        <p className="text-6xl text-green-700"><IoCheckmarkDoneCircle /></p>
+                        <img src={modalImg} alt="" />
                         <h3 className="font-bold text-3xl">Payment Successful!</h3>
                         <p className="py-4">Thank you for your purchase.</p>
                         <p className="font-bold text-xl">Total Cost: ${purchaseTotalCost}</p> 

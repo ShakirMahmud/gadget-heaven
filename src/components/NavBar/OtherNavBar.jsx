@@ -3,6 +3,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { useEffect, useState } from 'react';
 import { getAddToCartList, getAddToWishList } from '../../utilities/addToDB';
+import icon from '../../assets/favicon-16x16.png'
 
 const OtherNavBar = ({ title, subtitle, cart, wishlist, isDashboard, isWhyChooseUs, isStatistics }) => {
     const [totalProductsInCart, setTotalProductsInCart] = useState(getAddToCartList().length);
@@ -51,6 +52,7 @@ const OtherNavBar = ({ title, subtitle, cart, wishlist, isDashboard, isWhyChoose
                             <NavLink className={getLinkClass} to='/whyChooseUs' ><button >WhyChooseUs</button></NavLink>
                         </ul>
                     </div>
+                    <img src={icon} alt="" />
                     <NavLink to='/' className="btn btn-ghost hover:bg-transparent hover:shadow-none text-xl">Gadget Heaven</NavLink>
                 </div>
                 <div className="navbar-center hidden lg:flex">

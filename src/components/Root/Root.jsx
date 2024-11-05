@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { Outlet, useLoaderData, useLocation } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import HomeNavBar from '../NavBar/HomeNavBar';
@@ -6,10 +6,32 @@ import { OtherNavBar } from '../NavBar/OtherNavBar';
 import HomeBanner from '../Banner/HomeBanner';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { getAddToCartList } from '../../utilities/addToDB';
 
 
 
 const Root = () => {
+
+
+
+    const getCartItems = () => getAddToCartList(); // Fetch the cart list
+    const [cartLength, setCartLength] = useState(getCartItems().length);
+
+    useEffect(() => {
+        const currentCartLength = getCartItems().length;
+        setCartLength(currentCartLength);
+
+        // Optionally use intervals or subscriptions depending on cart updating
+        const interval = setInterval(() => {
+            const updatedCartLength = getCartItems().length;
+            if (updatedCartLength !== cartLength) {
+                setCartLength(updatedCartLength);
+            }
+        }, 500); // Poll every 500ms, or use custom event
+
+        return () => clearInterval(interval);
+    }, [cartLength]);
+
 
     const categories = useLoaderData();
     const location = useLocation();
