@@ -5,6 +5,7 @@ import { HiOutlineShoppingCart } from "react-icons/hi";
 import { AiOutlineHeart } from "react-icons/ai";
 import { addToStoredCartList, addToStoredWishList, getAddToWishList } from '../../utilities/addToDB';
 
+
 const GadgetDetails = () => {
     const { product_id } = useParams();
     const allGadgets = useLoaderData();
@@ -35,6 +36,7 @@ const GadgetDetails = () => {
 
     const handleAddToCart = (id) => {
         addToStoredCartList(id);
+
     };
     const handleAddToWishList = (id) => {
         addToStoredWishList(id);

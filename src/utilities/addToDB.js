@@ -16,16 +16,17 @@ const addToStoredCartList = (id) =>{
     }else{
         storedList.push(id);
         localStorage.setItem('cart', JSON.stringify(storedList));
-        alert('added to cart successfully')
+        alert('added to cart successfully');
     }
 }
 
 const removeFromCartList = (id) => {
     let storedList = getAddToCartList();
-    storedList = storedList.filter(item => item !== id); // Remove item by filtering it out
+    storedList = storedList.filter(item => item !== id.toString()); 
     localStorage.setItem('cart', JSON.stringify(storedList));
-    alert('Removed from cart successfully');
-}
+    // alert('Removed from cart successfully');
+};
+
 
 const getAddToWishList =()=>{
     const storedListStr = localStorage.getItem('wishlist');
@@ -46,15 +47,16 @@ const addToStoredWishList = (id) =>{
         storedList.push(id);
         localStorage.setItem('wishlist', JSON.stringify(storedList));
         alert('added to cart successfully')
+     
     }
 }
 
 const removeFromWishList = (id) => {
     let storedList = getAddToWishList();
-    storedList = storedList.filter(item => item !== id); 
+    storedList = storedList.filter(item => item !== id.toString()); 
     localStorage.setItem('wishlist', JSON.stringify(storedList));
-    alert('Removed from wishlist successfully');
+    // alert('Removed from wishlist successfully');
+  
 }
-
 
 export {addToStoredCartList, getAddToCartList, getAddToWishList, addToStoredWishList, removeFromCartList, removeFromWishList}
