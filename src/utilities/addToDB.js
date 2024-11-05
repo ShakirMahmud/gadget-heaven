@@ -10,22 +10,20 @@ const getAddToCartList = () => {
   }
 };
 
+
 const addToStoredCartList = (id) => {
   const storedList = getAddToCartList();
   const alreadyInCart = storedList.some((item) => item === id);
   if (alreadyInCart) {
     toast.warn("Item already added to cart!", {
-      position: "top-right",
+      position: "bottom-right",
       autoClose: 3000,
     });
   } else {
     storedList.push(id);
     localStorage.setItem("cart", JSON.stringify(storedList));
-    console.log("Toast:", toast),
-      console.log("Toast POSITION:", toast.POSITION);
-
     toast.success("Added to cart successfully!", {
-      position: "top-right",
+      position: "bottom-right",
       autoClose: 3000,
     });
   }
@@ -36,7 +34,7 @@ const removeFromCartList = (id) => {
   storedList = storedList.filter((item) => item !== id.toString());
   localStorage.setItem("cart", JSON.stringify(storedList));
   toast.info("Removed from cart successfully!", {
-    position: "top-right",
+    position: "bottom-right",
     autoClose: 3000,
   });
 };
@@ -56,14 +54,14 @@ const addToStoredWishList = (id) => {
   const alreadyInWishList = storedList.some((item) => item === id);
   if (alreadyInWishList) {
     toast.warn("Item already added to wishlist!", {
-      position: "top-right",
+      position: "bottom-right",
       autoClose: 3000,
     });
   } else {
     storedList.push(id);
     localStorage.setItem("wishlist", JSON.stringify(storedList));
     toast.success("Added to wishlist successfully!", {
-      position: "top-right",
+      position: "bottom-right",
       autoClose: 3000,
     });
   }
@@ -74,7 +72,7 @@ const removeFromWishList = (id) => {
   storedList = storedList.filter((item) => item !== id.toString());
   localStorage.setItem("wishlist", JSON.stringify(storedList));
   toast.info("Removed from wishlist successfully!", {
-    position: "top-right",
+    position: "bottom-right",
     autoClose: 3000,
   });
 };

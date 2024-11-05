@@ -1,26 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import { AiOutlineHeart } from "react-icons/ai";
 import { HiOutlineShoppingCart } from "react-icons/hi";
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { getAddToCartList, getAddToWishList } from '../../utilities/addToDB';
 import icon from '../../assets/favicon-16x16.png'
+import { CartContext, WishlistContext } from '../../context';
 
 const OtherNavBar = ({ title, subtitle, cart, wishlist, isDashboard, isWhyChooseUs, isStatistics }) => {
-    const [totalProductsInCart, setTotalProductsInCart] = useState(getAddToCartList().length);
-    const [totalProductsInWishList, setTotalProductsInWishList] = useState(getAddToWishList().length);
-
-    useEffect(() => {
-        const handleStorageChange = () => {
-            setTotalProductsInCart(getAddToCartList().length);
-            setTotalProductsInWishList(getAddToWishList().length);
-        };
-        window.addEventListener('storage', handleStorageChange);
-
-        return () => {
-            window.removeEventListener('storage', handleStorageChange);
-        };
-    }, []);
-
+    const {cartLength} = useContext(CartContext);
+    const {wishlistLength} = useContext(WishlistContext);
+    
     const getLinkClass = ({ isActive }) => 
         `text-base font-medium ${isActive ? 'text-black border-2 border-black p-2 rounded-full' : 'text-[#0B0B0BB3]'}`
     
@@ -69,9 +58,9 @@ const OtherNavBar = ({ title, subtitle, cart, wishlist, isDashboard, isWhyChoose
                             <HiOutlineShoppingCart />
                         </button>
                         <div>
-                            {totalProductsInCart > 0 && (
+                            {cartLength > 0 && (
                                 <div className="rounded-full p-1 w-8 flex justify-center -translate-x-3 -translate-y-3 text-black border bg-white text-base">
-                                    {totalProductsInCart}
+                                    {cartLength}
                                 </div>
                             )}
                         </div>
@@ -81,9 +70,9 @@ const OtherNavBar = ({ title, subtitle, cart, wishlist, isDashboard, isWhyChoose
                             <AiOutlineHeart />
                         </button>
                         <div>
-                            {totalProductsInWishList > 0 && (
+                            {wishlistLength > 0 && (
                                 <div className="rounded-full p-1 w-8 flex justify-center -translate-x-3 -translate-y-3 text-black border bg-white text-base">
-                                    {totalProductsInWishList}
+                                    {wishlistLength}
                                 </div>
                             )}
                         </div>

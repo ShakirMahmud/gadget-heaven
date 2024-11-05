@@ -15,11 +15,11 @@ import Gadgets from './components/Gadgets/Gadgets.jsx';
 import GadgetDetails from './components/GadgetDetails/GadgetDetails.jsx';
 import Cart from './components/Dashboard/Cart.jsx';
 import WishList from './components/Dashboard/WishList.jsx';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { HelmetProvider } from 'react-helmet-async';
 import WhyChooseUs from './components/WhyChooseUs/WhyChooseUs.jsx';
 import ErrorPage from './components/ErrorPage/ErrorPage.jsx';
+
 
 
 const router = createBrowserRouter([
@@ -27,57 +27,57 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root></Root>,
     errorElement: <ErrorPage></ErrorPage>,
-    loader: ()=> fetch('../GadgetCategories.json'),
-    children:[
+    loader: () => fetch('../GadgetCategories.json'),
+    children: [
       {
-        path:'/',
-        element:<Home></Home>,
-        loader: ()=> fetch('../GadgetCategories.json'),
-        children:[
+        path: '/',
+        element: <Home></Home>,
+        loader: () => fetch('../GadgetCategories.json'),
+        children: [
           {
             path: '/',
             element: <Gadgets></Gadgets>,
-            loader: ()=> fetch('../Gadgets.json'),
+            loader: () => fetch('../Gadgets.json'),
           },
           {
             path: '/category/:category',
             element: <Gadgets></Gadgets>,
-            loader: ()=> fetch('../Gadgets.json'),
+            loader: () => fetch('../Gadgets.json'),
           },
         ]
       },
       {
         path: '/statistics',
         element: <Statistics></Statistics>,
-        loader: ()=> fetch('/Gadgets.json'),
+        loader: () => fetch('/Gadgets.json'),
       },
       {
         path: '/dashboard',
         element: <Dashboard></Dashboard>,
-        loader: ()=> fetch('/Gadgets.json'),
+        loader: () => fetch('/Gadgets.json'),
         children: [
           {
-              path: '/dashboard', // Route for Cart
-              element: <Cart></Cart>,
-              loader: ()=> fetch('../Gadgets.json'),
+            path: '/dashboard', // Route for Cart
+            element: <Cart></Cart>,
+            loader: () => fetch('../Gadgets.json'),
           },
           {
-              path: 'cart', // Route for Cart
-              element: <Cart></Cart>,
-              loader: ()=> fetch('../Gadgets.json'),
+            path: 'cart', // Route for Cart
+            element: <Cart></Cart>,
+            loader: () => fetch('../Gadgets.json'),
           },
           {
-              path: 'wishlist', // Route for Wishlist
-              element: <WishList></WishList>,
-              loader: ()=> fetch('../Gadgets.json'),
+            path: 'wishlist', // Route for Wishlist
+            element: <WishList></WishList>,
+            loader: () => fetch('../Gadgets.json'),
           }
-      ]
-        
+        ]
+
       },
       {
         path: '/:category/:product_id',
         element: <GadgetDetails></GadgetDetails>,
-        loader: ()=> fetch('/Gadgets.json'),
+        loader: () => fetch('/Gadgets.json'),
       },
       {
         path: '/WhyChooseUs',
@@ -90,10 +90,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <HelmetProvider>
-
-    <RouterProvider router={router} >
-    </RouterProvider>
+      <RouterProvider router={router} ></RouterProvider>
     </HelmetProvider>
-     
+    
+
   </StrictMode>,
 )

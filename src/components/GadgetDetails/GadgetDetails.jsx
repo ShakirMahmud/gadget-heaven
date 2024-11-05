@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { AiOutlineHeart } from "react-icons/ai";
-import { addToStoredCartList, addToStoredWishList, getAddToWishList } from '../../utilities/addToDB';
+import { addToStoredCartList, addToStoredWishList, getAddToCartList, getAddToWishList } from '../../utilities/addToDB';
+import { CartContext, WishlistContext } from '../../context';
 
 
 const GadgetDetails = () => {
@@ -11,7 +12,8 @@ const GadgetDetails = () => {
     const allGadgets = useLoaderData();
     const clickedGadgets = allGadgets.filter(gadget => gadget.product_id == product_id);
     const [{ product_image, product_title, price, description, specification, rating, availability }] = clickedGadgets;
-
+    const {setCartLength} = useContext(CartContext);
+    const {setWishlistLength} = useContext(WishlistContext);
     const [isWishListed, setIsWishListed] = useState(false);
     const renderStars = () => {
         const stars = [];
@@ -36,27 +38,17 @@ const GadgetDetails = () => {
 
     const handleAddToCart = (id) => {
         addToStoredCartList(id);
-
+        const storedList = getAddToCartList(); 
+        setCartLength(storedList.length); 
     };
+
     const handleAddToWishList = (id) => {
         addToStoredWishList(id);
-        setIsWishListed(true); 
-
+        const storedList = getAddToWishList(); 
+        setWishlistLength(storedList.length); 
     };
-
-    useEffect(() => {
-        const handleStorageChange = () => {
-            const storedWishList = getAddToWishList();
-            const isProductInWishList = storedWishList.includes(product_id);
-            setIsWishListed(isProductInWishList);
-        };
-
-        window.addEventListener('storage', handleStorageChange);
-
-        return () => {
-            window.removeEventListener('storage', handleStorageChange);
-        };
-    }, [product_id]);
+    
+    
 
     return (
         <div className="bg-white w-3/4 mx-auto translate -translate-y-[40%] p-8 rounded-3xl">

@@ -7,31 +7,14 @@ import HomeBanner from '../Banner/HomeBanner';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getAddToCartList } from '../../utilities/addToDB';
+import { CartContext, WishlistContext } from '../../context';
 
 
 
 const Root = () => {
 
-
-
-    const getCartItems = () => getAddToCartList(); // Fetch the cart list
-    const [cartLength, setCartLength] = useState(getCartItems().length);
-
-    useEffect(() => {
-        const currentCartLength = getCartItems().length;
-        setCartLength(currentCartLength);
-
-        // Optionally use intervals or subscriptions depending on cart updating
-        const interval = setInterval(() => {
-            const updatedCartLength = getCartItems().length;
-            if (updatedCartLength !== cartLength) {
-                setCartLength(updatedCartLength);
-            }
-        }, 500); // Poll every 500ms, or use custom event
-
-        return () => clearInterval(interval);
-    }, [cartLength]);
-
+    const  [cartLength, setCartLength] = useState(0);
+    const  [wishlistLength, setWishlistLength] = useState(0);
 
     const categories = useLoaderData();
     const location = useLocation();
@@ -45,7 +28,9 @@ const Root = () => {
         
         <div className='flex flex-col'>
           <ToastContainer />
-            {/* {isHome || isCategory ? <HomeNavBar></HomeNavBar> : <OtherNavBar></OtherNavBar>} */}
+            
+            <CartContext.Provider value={{cartLength, setCartLength}}>
+            <WishlistContext.Provider value={{wishlistLength, setWishlistLength}}>
             {showHomeNavAndBanner ? <div>
                 <HomeNavBar></HomeNavBar>
                 <HomeBanner></HomeBanner>
@@ -89,6 +74,8 @@ const Root = () => {
                 </div>
             }
             <div className='flex-grow'><Outlet ></Outlet></div>
+            </WishlistContext.Provider>
+            </CartContext.Provider>
             <Footer></Footer>
         </div>
     );

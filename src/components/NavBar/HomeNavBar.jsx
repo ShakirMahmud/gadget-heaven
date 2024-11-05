@@ -1,25 +1,14 @@
 import { AiOutlineHeart } from "react-icons/ai";
 import { HiOutlineShoppingCart } from "react-icons/hi";
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getAddToCartList, getAddToWishList } from "../../utilities/addToDB";
 import icon from '../../assets/favicon-16x16.png'
+import { CartContext, WishlistContext } from "../../context";
 
 const HomeNavBar = () => {
-    const [totalProductsInCart, setTotalProductsInCart] = useState(getAddToCartList().length);
-    const [totalProductsInWishList, setTotalProductsInWishList] = useState(getAddToWishList().length);
-
-    useEffect(() => {
-        const handleStorageChange = () => {
-            setTotalProductsInCart(getAddToCartList().length);
-            setTotalProductsInWishList(getAddToWishList().length);
-        };
-        window.addEventListener('storage', handleStorageChange);
-
-        return () => {
-            window.removeEventListener('storage', handleStorageChange);
-        };
-    }, []);
+    const {cartLength} = useContext(CartContext);
+    const {wishlistLength} = useContext(WishlistContext);
 
     const getLinkClass = ({ isActive }) =>
         `menu-item ${isActive ? 'text-white font-bold border-2 p-2 rounded-full' : 'text-white p-2'}`;
@@ -71,9 +60,9 @@ const HomeNavBar = () => {
                             <HiOutlineShoppingCart />
                         </button>
                         <div>
-                            {totalProductsInCart > 0 && (
+                            {cartLength > 0 && (
                                 <div className="rounded-full p-1 w-8 flex justify-center -translate-x-3 -translate-y-3 text-[#9538E2] bg-white text-base">
-                                    {totalProductsInCart}
+                                    {cartLength}
                                 </div>
                             )}
                         </div>
@@ -85,9 +74,9 @@ const HomeNavBar = () => {
                             <AiOutlineHeart />
                         </button>
                         <div>
-                            {totalProductsInWishList > 0 && (
+                            {wishlistLength > 0 && (
                                 <div className="rounded-full p-1 w-8 flex justify-center -translate-x-3 -translate-y-3 text-[#9538E2] bg-white text-base">
-                                    {totalProductsInWishList}
+                                    {wishlistLength}
                                 </div>
                             )}
                         </div>
