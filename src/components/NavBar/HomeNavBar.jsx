@@ -36,7 +36,7 @@ const HomeNavBar = () => {
                             <NavLink className={getLinkClass} to='/' ><button>Home</button></NavLink>
                             <NavLink className={getLinkClass} to='/statistics' ><button >Statistics</button></NavLink>
                             <NavLink className={getLinkClass} to='/dashboard' ><button >Dashboard</button></NavLink>
-                            <NavLink className={getLinkClass} to='/whyChooseUs' ><button >WhyChooseUs</button></NavLink>
+                            <NavLink className={getLinkClass} to='/whyChooseUs' ><button >Why Choose Us</button></NavLink>
                         </ul>
                     </div>
                     <NavLink to='/' className="btn btn-ghost hover:bg-transparent hover:shadow-none text-xl">Gadget Heaven</NavLink>

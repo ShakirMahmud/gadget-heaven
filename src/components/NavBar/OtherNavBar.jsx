@@ -37,7 +37,7 @@ const OtherNavBar = ({ title, subtitle, cart, wishlist, isDashboard, isWhyChoose
                             <NavLink to='/' className={getLinkClass}>Home</NavLink>
                             <NavLink to='/statistics' className={getLinkClass}>Statistics</NavLink>
                             <NavLink to='/dashboard' className={getLinkClass}>Dashboard</NavLink>
-                            <NavLink className={getLinkClass} to='/whyChooseUs' ><button >WhyChooseUs</button></NavLink>
+                            <NavLink className={getLinkClass} to='/whyChooseUs' ><button >Why Choose Us</button></NavLink>
                         </ul>
                     </div>
                     <NavLink to='/' className="btn btn-ghost hover:bg-transparent hover:shadow-none text-xl">Gadget Heaven</NavLink>
@@ -47,7 +47,7 @@ const OtherNavBar = ({ title, subtitle, cart, wishlist, isDashboard, isWhyChoose
                         <NavLink to='/' className={getLinkClass}>Home</NavLink>
                         <NavLink to='/statistics' className={getLinkClass}>Statistics</NavLink>
                         <NavLink to='/dashboard' className={getLinkClass}>Dashboard</NavLink>
-                        <NavLink className={getLinkClass} to='/whyChooseUs' ><button >WhyChooseUs</button></NavLink>
+                        <NavLink className={getLinkClass} to='/whyChooseUs' ><button >Why Choose Us</button></NavLink>
                     </ul>
                 </div>
                 <div className="navbar-end flex items-center gap-4">
