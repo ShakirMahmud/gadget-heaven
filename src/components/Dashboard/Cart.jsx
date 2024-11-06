@@ -1,3 +1,5 @@
+import { FaSortAmountDownAlt } from "react-icons/fa"; 
+import { FaSortAmountDown } from "react-icons/fa"; 
 
 import { useContext, useEffect, useState } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
@@ -61,14 +63,14 @@ const Cart = () => {
                     <h3 className="text-lg font-bold">Total Cost: ${totalCost}</h3>
                     <button
                         onClick={handleSort}
-                        className="ml-0 lg:ml-4 px-6 py-4 bg-blue-500 text-white rounded-full hover:bg-blue-600"
+                        className="ml-0 lg:ml-4 px-6 py-4 bg-blue-500 text-white rounded-full hover:bg-blue-600 flex items-center gap-3"
                     >
-                        Sort by Price
+                        Sort by Price {!isSortedDesc ? <FaSortAmountDown /> : <FaSortAmountDownAlt />}
                     </button>
                     <button
                         onClick={handlePurchase}
                         disabled={cartList.length === 0}
-                        className={`ml-0 lg:ml-4 px-6 py-3 text-white text-lg font-bold rounded-full transition-all duration-300
+                        className={`ml-0 lg:ml-4 px-6 py-3 w-full lg:w-auto text-white text-lg font-bold rounded-full transition-all duration-300
                             ${cartList.length === 0 ? 'bg-gray-400' : 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600'}`}
                     >
                         Purchase
