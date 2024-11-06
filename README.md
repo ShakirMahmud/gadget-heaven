@@ -6,7 +6,7 @@ Welcome to Gadget Heaven, an online gadget store where you can explore, add to c
 
 You can view the live website at the following link:
 
-### [Gadget Heaven Live Site](https://gadget-heaven-shakir.surge.sh/)
+## [Gadget Heaven Live Site](https://gadget-heaven-shakir.vercel.app/)
 
 ## Requirement Document Link
 
