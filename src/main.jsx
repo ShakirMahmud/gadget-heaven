@@ -20,8 +20,6 @@ import { HelmetProvider } from 'react-helmet-async';
 import WhyChooseUs from './components/WhyChooseUs/WhyChooseUs.jsx';
 import ErrorPage from './components/ErrorPage/ErrorPage.jsx';
 
-
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -57,17 +55,17 @@ const router = createBrowserRouter([
         loader: () => fetch('/Gadgets.json'),
         children: [
           {
-            path: '/dashboard', // Route for Cart
+            path: '/dashboard', 
             element: <Cart></Cart>,
             loader: () => fetch('../Gadgets.json'),
           },
           {
-            path: 'cart', // Route for Cart
+            path: 'cart', 
             element: <Cart></Cart>,
             loader: () => fetch('../Gadgets.json'),
           },
           {
-            path: 'wishlist', // Route for Wishlist
+            path: 'wishlist', 
             element: <WishList></WishList>,
             loader: () => fetch('../Gadgets.json'),
           }

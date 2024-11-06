@@ -2,7 +2,6 @@ import { useLoaderData, useParams } from "react-router-dom";
 import GadgetCards from "./GadgetCards";
 import { useEffect, useState } from "react";
 
-// Create a simple "NoData" component to display when no gadgets are found
 const NoData = () => {
     return (
         <div className="col-span-3 row-span-3 flex items-center justify-center mt-28">

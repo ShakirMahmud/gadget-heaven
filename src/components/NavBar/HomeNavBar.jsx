@@ -54,7 +54,6 @@ const HomeNavBar = () => {
                         <button className="border p-3 rounded-full flex items-center justify-center">
                             <HiOutlineShoppingCart />
                         </button>
-                        {/* Cart Counter */}
                         {cartLength > 0 && (
                             <div className="absolute -top-2 -right-2 rounded-full w-5 h-5 flex items-center justify-center text-[#9538E2] bg-white text-xs shadow-md">
                                 {cartLength}
@@ -66,7 +65,6 @@ const HomeNavBar = () => {
                         <button className="border p-3 rounded-full flex items-center justify-center">
                             <AiOutlineHeart />
                         </button>
-                        {/* Wishlist Counter */}
                         {wishlistLength > 0 && (
                             <div className="absolute -top-2 -right-2 rounded-full w-5 h-5 flex items-center justify-center text-[#9538E2] bg-white text-xs shadow-md">
                                 {wishlistLength}
