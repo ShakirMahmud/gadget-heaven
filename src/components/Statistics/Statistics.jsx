@@ -16,14 +16,14 @@ ChartJS.register(
 const Statistics = () => {
     const gadgets = useLoaderData();
     const productNames = gadgets.map(gadget => gadget.product_title);
-    const productRatings = gadgets.map(gadget => gadget.rating);
+    const productPrice = gadgets.map(gadget => gadget.price);
 
     const data = {
         labels: productNames,
         datasets: [
             {
-                label: 'Ratings',
-                data: productRatings,
+                label: 'Price',
+                data: productPrice,
                 backgroundColor: 'rgba(75, 192, 192, 0.6)',
                 borderColor: 'rgba(75, 192, 192, 1)', 
                 borderWidth: 1,
@@ -40,7 +40,7 @@ const Statistics = () => {
             },
             title: {
                 display: true,
-                text: 'Product Ratings Overview',
+                text: 'Product Price Overview',
             },
         },
         scales: {
@@ -55,7 +55,7 @@ const Statistics = () => {
             <Helmet>
                 <title>Statistics || Gadget-Heaven</title>
             </Helmet>
-            <h1 className="text-3xl font-bold text-center mb-6">Product Ratings</h1>
+            <h1 className="text-3xl font-bold text-center mb-6">Product Prices</h1>
             <Bar data={data} options={options} />
         </div>
     );
