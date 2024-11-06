@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Outlet, useLoaderData, useLocation } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import HomeNavBar from '../NavBar/HomeNavBar';
@@ -6,16 +6,12 @@ import { OtherNavBar } from '../NavBar/OtherNavBar';
 import HomeBanner from '../Banner/HomeBanner';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getAddToCartList } from '../../utilities/addToDB';
+import { getAddToCartList, getAddToWishList } from '../../utilities/addToDB';
 import { CartContext, WishlistContext } from '../../context';
-
-
 
 const Root = () => {
 
-    const currentCartLength = getAddToCartList.length;
-
-    const  [cartLength, setCartLength] = useState(currentCartLength);
+    const  [cartLength, setCartLength] = useState(0);
     const  [wishlistLength, setWishlistLength] = useState(0);
 
     const categories = useLoaderData();
@@ -26,6 +22,14 @@ const Root = () => {
     const isStatistics = location.pathname.startsWith('/statistics');
     const isCategory = Array.isArray(categories) && categories.some(category => location.pathname === `/category/${category.category_name}`);
     const showHomeNavAndBanner = isHome || isCategory;
+    
+    useEffect(()=>{
+        const storedCartList = getAddToCartList(); 
+        setCartLength(storedCartList.length); 
+        const storedWishList = getAddToWishList();
+        setWishlistLength(storedWishList.length);
+    },[])
+
     return (
         
         <div className='flex flex-col'>

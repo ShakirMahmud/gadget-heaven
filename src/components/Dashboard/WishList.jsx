@@ -21,7 +21,7 @@ const WishList = () => {
         const updatedWishList = wishList.filter(gadget => gadget.product_id !== productId);
         setWishList(updatedWishList);
         removeFromWishList(productId);
-        addToStoredCartList(productId);
+        addToStoredCartList(String(productId));
         const storedList = getAddToWishList(); 
         setWishlistLength(storedList.length);
     };
