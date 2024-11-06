@@ -12,7 +12,7 @@ You can view the live website at the following link:
 
 For a detailed overview of the project requirements, please refer to the following document:
 
-## [Project Requirements Document](https://github.com/ProgrammingHero1/B10-A8-gadget-heaven/blob/main/Batch-10_Assignment-08-.pdf)
+## [Project Requirements Document](https://github.com/ProgrammingHero1/B10-A8-gadget-heaven/blob/main/Batch-10_Assignment-08.pdf)
 
 ## React Fundamental Concepts Used in the Project
 
